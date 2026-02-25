@@ -1,64 +1,82 @@
-AirSculpt Pro
+🎨 3DAirSculpt Pro
+Gesture-Controlled Real-Time 3D Sculpting
 
-AirSculpt Pro is an advanced, gesture-controlled 3D sculpting environment that translates 2D hand movements into solid, manifold 3D geometry in real-time. By leveraging MediaPipe for high-fidelity hand tracking and NumPy/SciPy for geometric processing, it allows users to "sketch" in the air and solidify those sketches into interactive 3D objects.
+AirSculpt Pro is a computer vision–powered 3D sculpting system that transforms 2D hand movements into solid 3D geometry in real time.
 
-🚀 Key Features
+Using MediaPipe for hand tracking and NumPy/SciPy for geometric processing, users can sketch shapes in the air and convert them into interactive 3D objects — no mouse, no controller, just hand gestures.
 
-B-Spline Smoothing: Uses UnivariateSpline interpolation to convert shaky hand paths into elegant, fluid curves.
+🚀 Features
+✍ Air Sketching
 
-Ear-Clipping Triangulation: A custom geometry engine that converts arbitrary 2D polygons into solid 3D manifolds with closed caps.
+Draw 2D paths using your index finger. The system captures hand landmarks and tracks motion in real time.
 
-Gesture-Driven UI:
+🧠 B-Spline Smoothing
 
-Sketch (Index Finger): Draw 2D paths on the temporary canvas.
+Applies UnivariateSpline interpolation (SciPy) to convert unstable hand paths into smooth, elegant curves.
 
-Solidify (Open Palm): Hold an open palm to "bake" your 2D sketch into a 3D object.
+🔺 2D → 3D Solidification
 
-Orbit (Two Fingers): Rotate the entire 3D scene to view your creation from different angles.
+Implements a custom ear-clipping triangulation algorithm to convert arbitrary polygons into closed 3D meshes.
 
-Color Cycle (Three Fingers): Swap between high-contrast professional palettes.
+🖐 Gesture-Driven Controls
+Gesture	Action
+☝ Index Finger	Sketch 2D path
+🖐 Open Palm	Solidify into 3D object
+✌ Two Fingers	Orbit / Rotate scene
+🤟 Three Fingers	Cycle color palette
+✊ Fist	Clear scene
+🎥 Real-Time Rendering Engine
 
-Purge (Fist): Hold a fist to clear the scene and start over.
+Custom software rasterizer
 
-Real-time Rendering: A custom software rasterizer featuring flat shading, simple directional lighting, and Z-depth sorting.
+Flat shading
+
+Basic directional lighting
+
+Z-depth sorting
+
+Manual matrix-based 3D projection
+
+No external 3D engine is used — all transformations are computed with NumPy.
 
 🛠 Tech Stack
 
 Python 3.x
 
-OpenCV: Video capture and 2D UI rendering.
+OpenCV – Webcam capture & 2D interface rendering
 
-MediaPipe: ML-based hand landmark detection.
+MediaPipe – Machine learning–based hand landmark detection
 
-NumPy: Linear algebra for 3D transformations and projections.
+NumPy – Linear algebra for 3D transformations
 
-SciPy: Advanced spline interpolation for path smoothing.
+SciPy – Spline interpolation for smoothing
 
-🎮 How to Use
-
-Run the script:
-
+🎮 How to Run
 python 3dAirSculpt.py
 
+Make sure required dependencies are installed:
 
-Sketching: Raise your index finger and move it across the screen. You will see a 2D line following your finger.
+pip install -r requirements.txt
+⚙ Configuration
 
-Solidifying: Once you are happy with the shape, open your palm. A progress bar will appear at the bottom. Once full, the shape becomes a 3D object.
+Adjust these parameters inside the script:
 
-Orbiting: Use two fingers (Index and Middle) to "grab" the air and rotate the world.
+GESTURE_HOLD_FRAMES – Duration required to trigger actions
 
-Clearing: To start a new project, close your hand into a fist and hold until the progress bar completes.
+HAND_POSITION_SMOOTHING – Controls EMA jitter filtering
 
-⚙️ Configuration
+BSPLINE_SMOOTHING – Controls curve smoothness
 
-You can tune the experience in the CONFIGURATION section of the script:
+🧩 Technical Highlights
 
-GESTURE_HOLD_FRAMES: Adjust how long you need to hold a gesture to trigger "Solidify" or "Purge".
+Real-time hand landmark processing
 
-HAND_POSITION_SMOOTHING: Control the EMA (Exponential Moving Average) filter for hand jitter.
+Exponential Moving Average (EMA) filtering
 
-BSPLINE_SMOOTHING: Adjust how much the spline "ignores" small hand tremors.
+B-spline curve interpolation
 
-⚖️ License
+Custom polygon triangulation
 
-MIT License - Feel free to use and modify for your own creative coding projects!
+3D mesh generation from 2D sketches
+
+Perspective projection & rotation matrices
