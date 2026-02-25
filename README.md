@@ -1,83 +1,113 @@
-🎨 3DAirSculpt Pro
+🎨 3DAirSculpt: Gesture-Controlled 3D Sculpting
 
-Gesture-Controlled Real-Time 3D Sculpting
+3DAirSculpt is a computer vision–powered 3D sculpting environment that transforms 2D hand movements into solid 3D geometry in real-time. By leveraging MediaPipe for hand tracking and NumPy/SciPy for computational geometry, it allows users to sketch in thin air and generate interactive 3D objects—no mouse, no controller, just your hands.
 
-AirSculpt Pro is a computer vision–powered 3D sculpting system that transforms 2D hand movements into solid 3D geometry in real time.
+🚀 Key Features
 
-Using MediaPipe for hand tracking and NumPy/SciPy for geometric processing, users can sketch shapes in the air and convert them into interactive 3D objects — no mouse, no controller, just hand gestures.
+✍ Air Sketching: Draw paths using your index finger with real-time landmark tracking and instant visual feedback.
 
-🚀 Features
-✍ Air Sketching
+🧠 Path Smoothing: Integrated B-Spline smoothing via SciPy's UnivariateSpline to eliminate hand jitter and produce fluid, professional curves.
 
-Draw 2D paths using your index finger. The system captures hand landmarks and tracks motion in real time.
+🔺 2D to 3D Solidification: Uses a custom Ear-Clipping Triangulation algorithm to convert arbitrary 2D polygons into closed, solid 3D manifold geometry.
 
-🧠 B-Spline Smoothing
+🖐 Gesture-Based Controls: * ☝ Index Finger → Sketch path
 
-Applies UnivariateSpline interpolation (SciPy) to convert unstable hand paths into smooth, elegant curves.
+🖐 Open Palm → Solidify shape into 3D
 
-🔺 2D → 3D Solidification
+✌ Two Fingers → Orbit / Rotate scene
 
-Implements a custom ear-clipping triangulation algorithm to convert arbitrary polygons into closed 3D meshes.
+🤟 Three Fingers → Cycle color palettes
 
-🖐 Gesture-Driven Controls
-Gesture	Action
-☝ Index Finger	Sketch 2D path
-🖐 Open Palm	Solidify into 3D object
-✌ Two Fingers	Orbit / Rotate scene
-🤟 Three Fingers	Cycle color palette
-✊ Fist	Clear scene
-🎥 Real-Time Rendering Engine
+✊ Fist → Clear canvas
 
-Custom software rasterizer
-
-Flat shading
-
-Basic directional lighting
-
-Z-depth sorting
-
-Manual matrix-based 3D projection
-
-No external 3D engine is used — all transformations are computed with NumPy.
+🎥 Custom 3D Engine: A built-in software rasterizer featuring flat shading, directional lighting, Z-depth sorting, and matrix-based 3D transformations.
 
 🛠 Tech Stack
 
-Python 3.x
+Library
 
-OpenCV – Webcam capture & 2D interface rendering
+Role
 
-MediaPipe – Machine learning–based hand landmark detection
+OpenCV
 
-NumPy – Linear algebra for 3D transformations
+Video capture and high-performance 2D rendering
 
-SciPy – Spline interpolation for smoothing
+MediaPipe
 
-🎮 How to Run
+High-fidelity hand landmark detection
+
+NumPy
+
+Linear algebra, 3D math, and vertex transformations
+
+SciPy
+
+Spline interpolation for path smoothing
+
+🎮 Getting Started
+
+Prerequisites
+
+Ensure you have Python 3.x installed.
+
+Installation
+
+Clone the repository:
+
+git clone [https://github.com/your-username/3DAirSculpt.git](https://github.com/your-username/3DAirSculpt.git)
+cd 3DAirSculpt
+
+Running the App
+
 python 3dAirSculpt.py
 
-Make sure required dependencies are installed:
 
-pip install -r requirements.txt
 ⚙ Configuration
 
-Adjust these parameters inside the script:
+Adjust the sculpting experience by modifying parameters in the main script:
 
-GESTURE_HOLD_FRAMES – Duration required to trigger actions
+Parameter
 
-HAND_POSITION_SMOOTHING – Controls EMA jitter filtering
+Default
 
-BSPLINE_SMOOTHING – Controls curve smoothness
+Description
+
+GESTURE_HOLD_FRAMES
+
+10
+
+Frame duration required to trigger an action
+
+HAND_POSITION_SMOOTHING
+
+0.6
+
+EMA factor for jitter control
+
+BSPLINE_SMOOTHING
+
+True
+
+Toggle for curve refinement
 
 🧩 Technical Highlights
 
-Real-time hand landmark processing
+Real-Time Pipeline: Low-latency hand tracking utilizing MediaPipe's lightweight models.
 
-Exponential Moving Average (EMA) filtering
+Jitter Mitigation: Uses Exponential Moving Average (EMA) filtering combined with B-spline interpolation for a "stable" feel.
 
-B-spline curve interpolation
+Computational Geometry: Custom implementation of polygon triangulation to handle complex, concave shapes.
 
-Custom polygon triangulation
+Graphics Pipeline: Fully manual 3D projection (perspective division) and rotation matrix application without external GPU-heavy engines.
 
-3D mesh generation from 2D sketches
+📌 Project Focus
 
-Perspective projection & rotation matrices
+Computer Vision (HCI)
+
+Computational Geometry
+
+Real-Time Graphics
+
+Touchless Interfaces
+
+Created with ❤️ by [Your Name/GitHub]
